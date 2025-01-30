@@ -14,6 +14,14 @@
 		09013FB22D4C02EA00C39319 /* BeerAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FB12D4C02EA00C39319 /* BeerAppTests.swift */; };
 		09013FBC2D4C02EA00C39319 /* BeerAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FBB2D4C02EA00C39319 /* BeerAppUITests.swift */; };
 		09013FBE2D4C02EA00C39319 /* BeerAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FBD2D4C02EA00C39319 /* BeerAppUITestsLaunchTests.swift */; };
+		09013FD12D4C069700C39319 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FD02D4C069700C39319 /* Constants.swift */; };
+		09013FD32D4C077B00C39319 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FD22D4C077B00C39319 /* DependencyContainer.swift */; };
+		09013FD52D4C083300C39319 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FD42D4C083300C39319 /* APIRequestManager.swift */; };
+		09013FD72D4C089000C39319 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FD62D4C089000C39319 /* NetworkClient.swift */; };
+		09013FD92D4C08D400C39319 /* APIRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FD82D4C08D400C39319 /* APIRequestBuilder.swift */; };
+		09013FDB2D4C090900C39319 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FDA2D4C090900C39319 /* APIRequest.swift */; };
+		09013FDD2D4C0A5C00C39319 /* BeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FDC2D4C0A5C00C39319 /* BeerService.swift */; };
+		09013FDF2D4C0AFD00C39319 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FDE2D4C0AFD00C39319 /* Beer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		09013FB72D4C02EA00C39319 /* BeerAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeerAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09013FBB2D4C02EA00C39319 /* BeerAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerAppUITests.swift; sourceTree = "<group>"; };
 		09013FBD2D4C02EA00C39319 /* BeerAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		09013FD02D4C069700C39319 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		09013FD22D4C077B00C39319 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		09013FD42D4C083300C39319 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		09013FD62D4C089000C39319 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		09013FD82D4C08D400C39319 /* APIRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestBuilder.swift; sourceTree = "<group>"; };
+		09013FDA2D4C090900C39319 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		09013FDC2D4C0A5C00C39319 /* BeerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerService.swift; sourceTree = "<group>"; };
+		09013FDE2D4C0AFD00C39319 /* Beer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +110,12 @@
 		09013F9F2D4C02E900C39319 /* BeerApp */ = {
 			isa = PBXGroup;
 			children = (
-				09013FA02D4C02E900C39319 /* BeerApp.swift */,
-				09013FA22D4C02E900C39319 /* ContentView.swift */,
-				09013FA42D4C02EA00C39319 /* Assets.xcassets */,
+				09013FCB2D4C05B700C39319 /* App */,
+				09013FCD2D4C05E100C39319 /* Model */,
+				09013FCA2D4C052600C39319 /* Screens */,
+				09013FCF2D4C060C00C39319 /* Service */,
+				09013FCE2D4C05FB00C39319 /* Network */,
+				09013FCC2D4C05D500C39319 /* Resources */,
 				09013FA62D4C02EA00C39319 /* Preview Content */,
 			);
 			path = BeerApp;
@@ -125,6 +144,59 @@
 				09013FBD2D4C02EA00C39319 /* BeerAppUITestsLaunchTests.swift */,
 			);
 			path = BeerAppUITests;
+			sourceTree = "<group>";
+		};
+		09013FCA2D4C052600C39319 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				09013FA22D4C02E900C39319 /* ContentView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		09013FCB2D4C05B700C39319 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				09013FA02D4C02E900C39319 /* BeerApp.swift */,
+				09013FD02D4C069700C39319 /* Constants.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		09013FCC2D4C05D500C39319 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				09013FA42D4C02EA00C39319 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		09013FCD2D4C05E100C39319 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09013FDE2D4C0AFD00C39319 /* Beer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		09013FCE2D4C05FB00C39319 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				09013FDA2D4C090900C39319 /* APIRequest.swift */,
+				09013FD82D4C08D400C39319 /* APIRequestBuilder.swift */,
+				09013FD42D4C083300C39319 /* APIRequestManager.swift */,
+				09013FD62D4C089000C39319 /* NetworkClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		09013FCF2D4C060C00C39319 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				09013FD22D4C077B00C39319 /* DependencyContainer.swift */,
+				09013FDC2D4C0A5C00C39319 /* BeerService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +331,14 @@
 			files = (
 				09013FA32D4C02E900C39319 /* ContentView.swift in Sources */,
 				09013FA12D4C02E900C39319 /* BeerApp.swift in Sources */,
+				09013FDD2D4C0A5C00C39319 /* BeerService.swift in Sources */,
+				09013FD52D4C083300C39319 /* APIRequestManager.swift in Sources */,
+				09013FD32D4C077B00C39319 /* DependencyContainer.swift in Sources */,
+				09013FD92D4C08D400C39319 /* APIRequestBuilder.swift in Sources */,
+				09013FD12D4C069700C39319 /* Constants.swift in Sources */,
+				09013FDF2D4C0AFD00C39319 /* Beer.swift in Sources */,
+				09013FDB2D4C090900C39319 /* APIRequest.swift in Sources */,
+				09013FD72D4C089000C39319 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
