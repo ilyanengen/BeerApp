@@ -14,6 +14,7 @@ struct BeerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(dependencyContainer)
         }
     }
 }

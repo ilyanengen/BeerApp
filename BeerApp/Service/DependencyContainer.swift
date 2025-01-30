@@ -7,6 +7,7 @@
 
 import Foundation
 
+@Observable
 final class DependencyContainer {
     let beerService: BeerServiceProtocol
     let apiManager: APIRequestManagerProtocol
