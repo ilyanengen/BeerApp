@@ -41,7 +41,7 @@ final class APIRequestManager: APIRequestManagerProtocol {
     }
     
     private func handleResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {
-        print("\n===> APIRequestManager.handleResponse. \ndata: \(String(describing: String(data: data, encoding: .utf8))), \nresponse: \(response)")
+//        print("\n===> APIRequestManager.handleResponse. data:\n\(data.prettyJSON),\nresponse: \(response)")
         let response = try validateNetworkResponse(response)
         try validateResponseCode(response)
         let decoder = JSONDecoder()
@@ -104,6 +104,18 @@ enum APIError: Error {
             return "ClientError: \(statusCode)"
         case .decodeError(let error):
             return "DecodeError: \(error.localizedDescription)"
+        }
+    }
+}
+
+private extension Data {
+    var prettyJSON: String {
+        do {
+            let json = try JSONSerialization.jsonObject(with: self, options: [])
+            let prettyData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            return String(data: prettyData, encoding: .utf8) ?? ""
+        } catch {
+            return ""
         }
     }
 }
