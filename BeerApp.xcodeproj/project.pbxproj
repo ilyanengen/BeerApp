@@ -30,6 +30,7 @@
 		09C2A7662D4E86DD00B817AB /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 09C2A7652D4E86DD00B817AB /* SDWebImageSwiftUI */; };
 		09C2A7692D4E870A00B817AB /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2A7682D4E870A00B817AB /* WebImageView.swift */; };
 		09C2A76B2D4EA82800B817AB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09C2A76A2D4EA82800B817AB /* Colors.xcassets */; };
+		09C2A76D2D4EBF5900B817AB /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2A76C2D4EBF5900B817AB /* Number+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		09C2A7622D4E4D6E00B817AB /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		09C2A7682D4E870A00B817AB /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		09C2A76A2D4EA82800B817AB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		09C2A76C2D4EBF5900B817AB /* Number+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				09C2A7622D4E4D6E00B817AB /* Array+Extension.swift */,
+				09C2A76C2D4EBF5900B817AB /* Number+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				09013FA12D4C02E900C39319 /* BeerApp.swift in Sources */,
 				09013FDD2D4C0A5C00C39319 /* BeerService.swift in Sources */,
 				09013FD52D4C083300C39319 /* APIRequestManager.swift in Sources */,
+				09C2A76D2D4EBF5900B817AB /* Number+Extension.swift in Sources */,
 				09013FE32D4C123700C39319 /* BeerListViewModel.swift in Sources */,
 				09C2A7632D4E4D6E00B817AB /* Array+Extension.swift in Sources */,
 				09013FD32D4C077B00C39319 /* DependencyContainer.swift in Sources */,
@@ -562,6 +566,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -591,6 +596,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

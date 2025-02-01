@@ -19,7 +19,7 @@ struct BeerListItemView: View {
                 .font(.system(size: 16))
                 .multilineTextAlignment(.center)
                 .lineLimit(2, reservesSpace: true)
-                .foregroundStyle(.black)
+                .foregroundStyle(.textPrimary)
         }
         .padding(.vertical, 16)
         .padding(.horizontal, 10)
