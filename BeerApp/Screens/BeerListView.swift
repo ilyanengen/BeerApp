@@ -33,14 +33,15 @@ struct BeerListView: View {
             .scrollPosition(id: $currentScrollBeerItemId, anchor: .bottomTrailing)
             .onChange(of: currentScrollBeerItemId) { _, newValue in
                 if newValue == viewModel.lastFetchedBeerId {
-                    print("FETCH NEXT PAGE")
+                    Task {
+                        await viewModel.fetchMore()
+                    }
                 }
             }
             .task {
                 await viewModel.fetchBeerListItems()
             }
         }
-
     }
 }
 

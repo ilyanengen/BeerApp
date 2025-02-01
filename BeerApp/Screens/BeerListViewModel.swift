@@ -23,9 +23,15 @@ final class BeerListViewModel {
     }
     
     @MainActor
+    func fetchMore() async {
+        page += 1
+        await fetchBeerListItems()
+    }
+    
+    @MainActor
     func fetchBeerListItems() async {
         do {
-            let fetchedBeers = try await beerService.getBeers(page: 1)
+            let fetchedBeers = try await beerService.getBeers(page: page)
             if fetchedBeers.isEmpty {
                 page = lastFetchedPage
             } else {
