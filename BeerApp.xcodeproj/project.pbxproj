@@ -26,6 +26,7 @@
 		09013FE32D4C123700C39319 /* BeerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013FE22D4C123700C39319 /* BeerListViewModel.swift */; };
 		0948FCA22D4D77A700DF74C9 /* BeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948FCA12D4D77A700DF74C9 /* BeerDetailView.swift */; };
 		0948FCA42D4D78C300DF74C9 /* BeerListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948FCA32D4D78C300DF74C9 /* BeerListItemView.swift */; };
+		09C2A7632D4E4D6E00B817AB /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2A7622D4E4D6E00B817AB /* Array+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		09013FE22D4C123700C39319 /* BeerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListViewModel.swift; sourceTree = "<group>"; };
 		0948FCA12D4D77A700DF74C9 /* BeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailView.swift; sourceTree = "<group>"; };
 		0948FCA32D4D78C300DF74C9 /* BeerListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListItemView.swift; sourceTree = "<group>"; };
+		09C2A7622D4E4D6E00B817AB /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				09013FCA2D4C052600C39319 /* Screens */,
 				09013FCF2D4C060C00C39319 /* Service */,
 				09013FCE2D4C05FB00C39319 /* Network */,
+				09C2A7612D4E4D5600B817AB /* Helper */,
 				09013FCC2D4C05D500C39319 /* Resources */,
 				09013FA62D4C02EA00C39319 /* Preview Content */,
 			);
@@ -209,6 +212,14 @@
 				09013FDC2D4C0A5C00C39319 /* BeerService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		09C2A7612D4E4D5600B817AB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				09C2A7622D4E4D6E00B817AB /* Array+Extension.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +358,7 @@
 				09013FDD2D4C0A5C00C39319 /* BeerService.swift in Sources */,
 				09013FD52D4C083300C39319 /* APIRequestManager.swift in Sources */,
 				09013FE32D4C123700C39319 /* BeerListViewModel.swift in Sources */,
+				09C2A7632D4E4D6E00B817AB /* Array+Extension.swift in Sources */,
 				09013FD32D4C077B00C39319 /* DependencyContainer.swift in Sources */,
 				09013FD92D4C08D400C39319 /* APIRequestBuilder.swift in Sources */,
 				09013FD12D4C069700C39319 /* Constants.swift in Sources */,

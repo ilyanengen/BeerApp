@@ -35,7 +35,7 @@ final class BeerListViewModel {
             if fetchedBeers.isEmpty {
                 page = lastFetchedPage
             } else {
-                beers.append(contentsOf: fetchedBeers)
+                beers.appendUniqueItems(contentsOf: fetchedBeers)
                 lastFetchedBeerId = beers.last?.id
                 lastFetchedPage = page
             }
