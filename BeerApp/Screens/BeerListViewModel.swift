@@ -9,11 +9,27 @@ import Foundation
 
 @Observable
 final class BeerListViewModel {
-    var beers: [Beer] = []
-    var searchText: String = ""
+    var beerListItems: [Beer] {
+        if isSearchInProgress {
+            searchResults
+        } else {
+            beers
+        }
+    }
     
+    private var beers: [Beer] = []
+    
+    // Search locally
+    var searchText: String = "" {
+        didSet {
+            updateSearchResults()
+        }
+    }
+    var isSearchInProgress: Bool = false
+    var searchResults: [Beer] = []
+    
+    // Pagination
     var lastFetchedBeerId: Int?
-    
     private var page: Int = 1
     private var lastFetchedPage: Int = 1
     
@@ -42,6 +58,15 @@ final class BeerListViewModel {
             }
         } catch {
             print(error.localizedDescription) // TODO: handle error
+        }
+    }
+    
+    private func updateSearchResults() {
+        if searchText.isEmpty {
+            searchResults.removeAll()
+        } else {
+            let searchText = searchText.lowercased()
+            self.searchResults = beers.filter { $0.name.lowercased().contains(searchText) }
         }
     }
 }

@@ -9,31 +9,34 @@ import SwiftUI
 
 struct BeerListView: View {
     @State var viewModel: BeerListViewModel
+    
     @State private var currentScrollBeerItemId: Int?
     
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
-                if viewModel.beers.isEmpty {
+                // TODO: handle states
+                if viewModel.beerListItems.isEmpty {
                     emptyStateView
                 } else {
                     beerGridView
                 }
             }
             .background(.backgroundMain)
+            .navigationTitle("Beer Catalog")
             .scrollPosition(id: $currentScrollBeerItemId, anchor: .bottomTrailing)
+            .searchable(text: $viewModel.searchText, isPresented: $viewModel.isSearchInProgress, prompt: "Type beer name")
+            .task {
+                await viewModel.fetchBeerListItems()
+            }
             .onChange(of: currentScrollBeerItemId) { _, newValue in
+                guard !viewModel.isSearchInProgress else { return }
                 if newValue == viewModel.lastFetchedBeerId {
                     Task {
                         await viewModel.fetchMore()
                     }
                 }
             }
-            .task {
-                await viewModel.fetchBeerListItems()
-            }
-            .navigationTitle("Beer Catalog")
-            .searchable(text: $viewModel.searchText, prompt: "Type beer name")
         }
     }
     
@@ -41,7 +44,7 @@ struct BeerListView: View {
         let columns = [GridItem(.adaptive(minimum: 150), spacing: 16)]
         
         return LazyVGrid(columns: columns, spacing: 16) {
-            ForEach(viewModel.beers) { beer in
+            ForEach(viewModel.beerListItems) { beer in
                 NavigationLink {
                     BeerDetailView(beer: beer)
                 } label: {
