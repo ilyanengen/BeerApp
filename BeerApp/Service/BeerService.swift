@@ -52,15 +52,3 @@ struct GetBeerRequest: APIRequest {
         self.path = "beers/\(id)"
     }
 }
-
-struct GetBeerImageRequest: APIRequest {
-    let bodyParams: (any Codable)? = nil
-    let path: String
-    let method: APIRequestMethod = .get
-    let headers: [String : String]? = nil
-    let urlParams: [String : Any]? = nil
-    
-    init(id: Int) {
-        self.path = String(format: "images/%03d.png", id)
-    }
-}

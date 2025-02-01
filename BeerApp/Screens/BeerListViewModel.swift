@@ -33,6 +33,8 @@ final class BeerListViewModel {
     private var page: Int = 1
     private var lastFetchedPage: Int = 1
     
+    var errorMessage: String = ""
+    
     private let beerService: BeerServiceProtocol
     
     init(beerService: BeerServiceProtocol) {
@@ -47,6 +49,8 @@ final class BeerListViewModel {
     
     @MainActor
     func fetchBeerListItems() async {
+        errorMessage = ""
+        
         do {
             let fetchedBeers = try await beerService.getBeers(page: page)
             if fetchedBeers.isEmpty {
@@ -57,7 +61,7 @@ final class BeerListViewModel {
                 lastFetchedPage = page
             }
         } catch {
-            print(error.localizedDescription) // TODO: handle error
+            errorMessage = (error as? APIError)?.errorDescription ?? error.localizedDescription
         }
     }
     

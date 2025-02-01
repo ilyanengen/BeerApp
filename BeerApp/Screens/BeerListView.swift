@@ -11,6 +11,7 @@ struct BeerListView: View {
     @State var viewModel: BeerListViewModel
     
     @State private var currentScrollBeerItemId: Int?
+    @State private var showErrorAlert: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -36,6 +37,18 @@ struct BeerListView: View {
                         await viewModel.fetchMore()
                     }
                 }
+            }
+            .onChange(of: viewModel.errorMessage) { _, newValue in
+                if !newValue.isEmpty {
+                    showErrorAlert = true
+                }
+            }
+            .alert("Error", isPresented: $showErrorAlert) {
+                Button("OK", role: .cancel) { 
+                    showErrorAlert = false
+                }
+            } message: {
+                Text(viewModel.errorMessage)
             }
         }
     }
