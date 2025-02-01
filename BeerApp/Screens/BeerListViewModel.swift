@@ -9,18 +9,32 @@ import Foundation
 
 @Observable
 final class BeerListViewModel {
+    var beers: [Beer] = []
+    
+    var lastFetchedBeerId: Int?
+    
+    private var page: Int = 1
+    private var lastFetchedPage: Int = 1
+    
     private let beerService: BeerServiceProtocol
     
     init(beerService: BeerServiceProtocol) {
         self.beerService = beerService
     }
     
+    @MainActor
     func fetchBeerListItems() async {
         do {
-            let beers = try await beerService.getBeers(page: 1)
-            print("BEERS: \(beers)")
+            let fetchedBeers = try await beerService.getBeers(page: 1)
+            if fetchedBeers.isEmpty {
+                page = lastFetchedPage
+            } else {
+                beers.append(contentsOf: fetchedBeers)
+                lastFetchedBeerId = beers.last?.id
+                lastFetchedPage = page
+            }
         } catch {
-            print(error.localizedDescription)
+            print(error.localizedDescription) // TODO: handle error
         }
     }
 }
