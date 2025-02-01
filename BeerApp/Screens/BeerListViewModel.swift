@@ -10,6 +10,7 @@ import Foundation
 @Observable
 final class BeerListViewModel {
     var beers: [Beer] = []
+    var searchText: String = ""
     
     var lastFetchedBeerId: Int?
     

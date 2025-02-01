@@ -21,17 +21,7 @@ struct BeerListView: View {
                 if viewModel.beers.isEmpty {
                     emptyStateView
                 } else {
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(viewModel.beers) { beer in
-                            NavigationLink {
-                                BeerDetailView(beer: beer)
-                            } label: {
-                                BeerListItemView(beer: beer)
-                            }
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .scrollTargetLayout()
+                    beerGridView
                 }
             }
             .scrollPosition(id: $currentScrollBeerItemId, anchor: .bottomTrailing)
@@ -45,7 +35,23 @@ struct BeerListView: View {
             .task {
                 await viewModel.fetchBeerListItems()
             }
+            .navigationTitle("Beer Catalog")
+            .searchable(text: $viewModel.searchText, prompt: "Type beer name")
         }
+    }
+    
+    private var beerGridView: some View {
+        LazyVGrid(columns: columns, spacing: 16) {
+            ForEach(viewModel.beers) { beer in
+                NavigationLink {
+                    BeerDetailView(beer: beer)
+                } label: {
+                    BeerListItemView(beer: beer)
+                }
+            }
+        }
+        .padding(.horizontal, 16)
+        .scrollTargetLayout()
     }
     
     private var emptyStateView: some View {
