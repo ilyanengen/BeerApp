@@ -11,10 +11,6 @@ struct BeerListView: View {
     @State var viewModel: BeerListViewModel
     @State private var currentScrollBeerItemId: Int?
     
-    let columns = [
-        GridItem(.adaptive(minimum: 150), spacing: 16)
-    ]
-    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
@@ -24,6 +20,7 @@ struct BeerListView: View {
                     beerGridView
                 }
             }
+            .background(.backgroundMain)
             .scrollPosition(id: $currentScrollBeerItemId, anchor: .bottomTrailing)
             .onChange(of: currentScrollBeerItemId) { _, newValue in
                 if newValue == viewModel.lastFetchedBeerId {
@@ -41,7 +38,9 @@ struct BeerListView: View {
     }
     
     private var beerGridView: some View {
-        LazyVGrid(columns: columns, spacing: 16) {
+        let columns = [GridItem(.adaptive(minimum: 150), spacing: 16)]
+        
+        return LazyVGrid(columns: columns, spacing: 16) {
             ForEach(viewModel.beers) { beer in
                 NavigationLink {
                     BeerDetailView(beer: beer)

@@ -11,23 +11,29 @@ struct BeerListItemView: View {
     var beer: Beer
     
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 16) {
             WebImageView(url: beer.imageURL)
                 .scaledToFit()
-                .padding(.top, 10)
-                .padding(.horizontal, 10)
             
             Text(beer.name)
-                .foregroundStyle(.white)
-                .padding(.horizontal, 10)
-                .padding(.bottom, 10)
+                .font(.system(size: 16))
+                .multilineTextAlignment(.center)
+                .lineLimit(2, reservesSpace: true)
+                .foregroundStyle(.black)
         }
-        .frame(maxWidth: .infinity, maxHeight: 180)
-        .background(.gray)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .padding(.vertical, 16)
+        .padding(.horizontal, 10)
+        .frame(maxWidth: .infinity, maxHeight: 230)
+        .background(.backgroundItem)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }
 
 #Preview {
-    BeerListItemView(beer: Beer.test)
+    VStack {
+        BeerListItemView(beer: Beer.test)
+            .frame(width: 160)
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .background(.gray)
 }
