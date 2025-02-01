@@ -27,6 +27,8 @@
 		0948FCA22D4D77A700DF74C9 /* BeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948FCA12D4D77A700DF74C9 /* BeerDetailView.swift */; };
 		0948FCA42D4D78C300DF74C9 /* BeerListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948FCA32D4D78C300DF74C9 /* BeerListItemView.swift */; };
 		09C2A7632D4E4D6E00B817AB /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2A7622D4E4D6E00B817AB /* Array+Extension.swift */; };
+		09C2A7662D4E86DD00B817AB /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 09C2A7652D4E86DD00B817AB /* SDWebImageSwiftUI */; };
+		09C2A7692D4E870A00B817AB /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2A7682D4E870A00B817AB /* WebImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,7 @@
 		0948FCA12D4D77A700DF74C9 /* BeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailView.swift; sourceTree = "<group>"; };
 		0948FCA32D4D78C300DF74C9 /* BeerListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListItemView.swift; sourceTree = "<group>"; };
 		09C2A7622D4E4D6E00B817AB /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		09C2A7682D4E870A00B817AB /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C2A7662D4E86DD00B817AB /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +169,7 @@
 				0948FCA32D4D78C300DF74C9 /* BeerListItemView.swift */,
 				09013FE22D4C123700C39319 /* BeerListViewModel.swift */,
 				0948FCA12D4D77A700DF74C9 /* BeerDetailView.swift */,
+				09C2A7672D4E86F100B817AB /* Common */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -222,6 +227,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		09C2A7672D4E86F100B817AB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				09C2A7682D4E870A00B817AB /* WebImageView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,6 +251,9 @@
 			dependencies = (
 			);
 			name = BeerApp;
+			packageProductDependencies = (
+				09C2A7652D4E86DD00B817AB /* SDWebImageSwiftUI */,
+			);
 			productName = BeerApp;
 			productReference = 09013F9D2D4C02E900C39319 /* BeerApp.app */;
 			productType = "com.apple.product-type.application";
@@ -310,6 +326,9 @@
 				Base,
 			);
 			mainGroup = 09013F942D4C02E900C39319;
+			packageReferences = (
+				09C2A7642D4E86DD00B817AB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 09013F9E2D4C02E900C39319 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -361,6 +380,7 @@
 				09C2A7632D4E4D6E00B817AB /* Array+Extension.swift in Sources */,
 				09013FD32D4C077B00C39319 /* DependencyContainer.swift in Sources */,
 				09013FD92D4C08D400C39319 /* APIRequestBuilder.swift in Sources */,
+				09C2A7692D4E870A00B817AB /* WebImageView.swift in Sources */,
 				09013FD12D4C069700C39319 /* Constants.swift in Sources */,
 				09013FDF2D4C0AFD00C39319 /* Beer.swift in Sources */,
 				09013FE12D4C120800C39319 /* BeerListView.swift in Sources */,
@@ -696,6 +716,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09C2A7642D4E86DD00B817AB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09C2A7652D4E86DD00B817AB /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09C2A7642D4E86DD00B817AB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 09013F952D4C02E900C39319 /* Project object */;
 }
