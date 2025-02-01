@@ -18,17 +18,21 @@ struct BeerListView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(viewModel.beers) { beer in
-                        NavigationLink {
-                            BeerDetailView(beer: beer)
-                        } label: {
-                            BeerListItemView(beer: beer)
+                if viewModel.beers.isEmpty {
+                    emptyStateView
+                } else {
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(viewModel.beers) { beer in
+                            NavigationLink {
+                                BeerDetailView(beer: beer)
+                            } label: {
+                                BeerListItemView(beer: beer)
+                            }
                         }
                     }
+                    .padding(.horizontal, 16)
+                    .scrollTargetLayout()
                 }
-                .padding(.horizontal, 16)
-                .scrollTargetLayout()
             }
             .scrollPosition(id: $currentScrollBeerItemId, anchor: .bottomTrailing)
             .onChange(of: currentScrollBeerItemId) { _, newValue in
@@ -41,6 +45,25 @@ struct BeerListView: View {
             .task {
                 await viewModel.fetchBeerListItems()
             }
+        }
+    }
+    
+    private var emptyStateView: some View {
+        ContentUnavailableView(label: {
+            Label("Oops, no beer today", systemImage: "mug")
+        }, description: {
+            Text("Information about beer types will appear here")
+        }, actions: {
+            Button(action: {
+                Task {
+                    await viewModel.fetchBeerListItems()
+                }
+            }) {
+                Text("Refresh")
+            }
+        })
+        .containerRelativeFrame(.vertical) { length, _ in
+            length
         }
     }
 }
