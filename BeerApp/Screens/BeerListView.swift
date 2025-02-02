@@ -114,12 +114,8 @@ struct BeerListView: View {
                 .progressViewStyle(CircularProgressViewStyle(tint: .gray))
                 .scaleEffect(1.5)
                 .containerRelativeFrame(.vertical) { length, _ in
-                    length / 1.2
+                    length
                 }
         }
     }
 }
-
-//#Preview {
-//    BeerListView()
-//}

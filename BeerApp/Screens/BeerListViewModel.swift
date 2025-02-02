@@ -18,10 +18,9 @@ final class BeerListViewModel {
     }
     
     var isInitialLoading: Bool = false
+    var errorMessage: String = ""
     
-    private var beers: [Beer] = []
-    
-    // Search locally
+    // Search
     var searchText: String = "" {
         didSet {
             updateSearchResults()
@@ -35,7 +34,7 @@ final class BeerListViewModel {
     private var page: Int = 1
     private var lastFetchedPage: Int = 1
     
-    var errorMessage: String = ""
+    private var beers: [Beer] = []
     
     private let beerService: BeerServiceProtocol
     
@@ -49,12 +48,12 @@ final class BeerListViewModel {
             isInitialLoading = true
             errorMessage = ""
             let fetchedBeers = try await beerService.getBeers(page: page)
-            isInitialLoading = false
             if !fetchedBeers.isEmpty {
                 beers = fetchedBeers
                 lastFetchedBeerId = beers.last?.id
                 lastFetchedPage = page
             }
+            isInitialLoading = false
         } catch {
             isInitialLoading = false
             errorMessage = (error as? APIError)?.errorDescription ?? error.localizedDescription
