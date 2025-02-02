@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Beer: Decodable, Identifiable {
+struct Beer: Decodable, Identifiable, Equatable {
     let id: Int
     let name: String
     let tagline: String
@@ -29,6 +29,10 @@ struct Beer: Decodable, Identifiable {
     let foodPairing: [String]
     let brewersTips: String
     let contributedBy: String
+    
+    static func == (lhs: Beer, rhs: Beer) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 struct Volume: Decodable {
@@ -91,7 +95,7 @@ extension Beer {
         name: "Zhigulevskoye",
         tagline: "Legendary beer from Samara",
         firstBrewed: "1881",
-        description: "Zhigulevskoye is a brand of Russian beer. The original brewery was founded in Samara in 1881 by Austrian entrepreneur Alfred von Vacano. The original brand was named Viennese Beer, but, according to legend, in 1934 it was renamed Zhigulevskoye Beer to get rid of its bourgeois name. During the Soviet era, at times it was virtually the only beer brand that could be found anywhere in the country. At the peak of its popularity it was made in more than 700 breweries around the country, and it practically became a generic name for beer. Production was regulated by a GOST standard since 1938. Zhigulevskoye had to contain no less than 2.8% alcohol by mass and was allowed to have up to 15% of adjuncts. Since the disintegration of the Soviet Union, beer under the Zhigulyovskoye brand has been produced by multiple breweries in several former Soviet countries. Attempts to register it as a trademark in 2000 were unsuccessful. On May 17, the Appeals Chamber of Rospatent accepted all the objections of the Ryazan JSC Russian Brewing Company and canceled the registration of the Zhigulevskoye trademark.",
+        description: "Zhigulevskoye is a brand of Russian beer. The original brewery was founded in Samara in 1881 by Austrian entrepreneur Alfred von Vacano.",
         image: "022.png",
         abv: 1.0,
         ibu: 2.0,
@@ -108,5 +112,29 @@ extension Beer {
         foodPairing: [],
         brewersTips: "Hardcore",
         contributedBy: "Alfred von Vacano"
+    )
+    
+    static let test1 = Beer(
+        id: 222,
+        name: "Baltika",
+        tagline: "Legendary beer from St. Petersburg",
+        firstBrewed: "1978",
+        description: "Baltika Brewery is Europe's second-largest brewing company and dominates the Russian beer market with a 38% share. The company operates from its headquarters in St. Petersburg.",
+        image: "023.png",
+        abv: 2.0,
+        ibu: 3.0,
+        targetFg: 4.5,
+        targetOg: 5.2,
+        ebc: 1.3,
+        srm: 2.1,
+        ph: 2,
+        attenuationLevel: 3,
+        volume: nil,
+        boilVolume: nil,
+        method: nil,
+        ingredients: nil,
+        foodPairing: [],
+        brewersTips: "Drink cold",
+        contributedBy: "Taimuraz Bolloyev"
     )
 }

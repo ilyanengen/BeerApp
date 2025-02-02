@@ -35,3 +35,15 @@ struct GetBeersPageRequest: APIRequest {
         self.urlParams = ["page": page]
     }
 }
+
+final class MockBeerService: BeerServiceProtocol {
+    var shouldReturnError: Bool = false
+    
+    func getBeers(page: Int) async throws -> [Beer] {
+        if shouldReturnError {
+            throw APIError.serverError(statusCode: 502)
+        }
+        
+        return [Beer.test, Beer.test1]
+    }
+}

@@ -16,26 +16,20 @@ final class BeerListViewModel {
             beers
         }
     }
-    
     var isInitialLoading: Bool = false
     var errorMessage: String = ""
-    
-    // Search
     var searchText: String = "" {
         didSet {
             updateSearchResults()
         }
     }
     var isSearchInProgress: Bool = false
-    var searchResults: [Beer] = []
-    
-    // Pagination
     var lastFetchedBeerId: Int?
+    
     private var page: Int = 1
     private var lastFetchedPage: Int = 1
-    
+    private var searchResults: [Beer] = []
     private var beers: [Beer] = []
-    
     private let beerService: BeerServiceProtocol
     
     init(beerService: BeerServiceProtocol) {
@@ -43,7 +37,7 @@ final class BeerListViewModel {
     }
     
     @MainActor
-    func initialLoad() async {
+    func fetchInitialData() async {
         do {
             isInitialLoading = true
             errorMessage = ""

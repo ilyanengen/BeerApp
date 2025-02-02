@@ -31,7 +31,7 @@ struct BeerListView: View {
             .scrollPosition(id: $currentScrollBeerItemId, anchor: .bottomTrailing)
             .searchable(text: $viewModel.searchText, isPresented: $viewModel.isSearchInProgress, prompt: "Type beer name")
             .task {
-                await viewModel.initialLoad()
+                await viewModel.fetchInitialData()
             }
             .onChange(of: currentScrollBeerItemId) { _, newValue in
                 guard !viewModel.isSearchInProgress else { return }
@@ -93,7 +93,7 @@ struct BeerListView: View {
             }, actions: {
                 Button(action: {
                     Task {
-                        await viewModel.initialLoad()
+                        await viewModel.fetchInitialData()
                     }
                 }) {
                     Text("Refresh")
