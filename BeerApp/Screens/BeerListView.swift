@@ -16,9 +16,12 @@ struct BeerListView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
-                // TODO: handle states
                 if viewModel.beerListItems.isEmpty {
-                    emptyStateView
+                    if viewModel.isInitialLoading {
+                        loadingIndicator
+                    } else {
+                        emptyStateView
+                    }
                 } else {
                     beerGridView
                 }
@@ -28,7 +31,7 @@ struct BeerListView: View {
             .scrollPosition(id: $currentScrollBeerItemId, anchor: .bottomTrailing)
             .searchable(text: $viewModel.searchText, isPresented: $viewModel.isSearchInProgress, prompt: "Type beer name")
             .task {
-                await viewModel.fetchBeerListItems()
+                await viewModel.initialLoad()
             }
             .onChange(of: currentScrollBeerItemId) { _, newValue in
                 guard !viewModel.isSearchInProgress else { return }
@@ -44,7 +47,7 @@ struct BeerListView: View {
                 }
             }
             .alert("Error", isPresented: $showErrorAlert) {
-                Button("OK", role: .cancel) { 
+                Button("OK", role: .cancel) {
                     showErrorAlert = false
                 }
             } message: {
@@ -69,22 +72,50 @@ struct BeerListView: View {
         .scrollTargetLayout()
     }
     
+    @ViewBuilder
     private var emptyStateView: some View {
-        ContentUnavailableView(label: {
-            Label("Oops, no beer today", systemImage: "mug")
-        }, description: {
-            Text("Information about beer types will appear here")
-        }, actions: {
-            Button(action: {
-                Task {
-                    await viewModel.fetchBeerListItems()
-                }
-            }) {
-                Text("Refresh")
+        if viewModel.isSearchInProgress {
+            ContentUnavailableView(label: {
+                Label("No search results", systemImage: "magnifyingglass")
+            }, description: {
+                Text("Try other terms")
+            })
+            .containerRelativeFrame(.vertical) { length, _ in
+                length
             }
-        })
-        .containerRelativeFrame(.vertical) { length, _ in
-            length
+            
+        } else {
+            
+            ContentUnavailableView(label: {
+                Label("Oops, no beer today", systemImage: "mug")
+            }, description: {
+                Text("Information about beer types will appear here")
+            }, actions: {
+                Button(action: {
+                    Task {
+                        await viewModel.initialLoad()
+                    }
+                }) {
+                    Text("Refresh")
+                }
+            })
+            .containerRelativeFrame(.vertical) { length, _ in
+                length
+            }
+        }
+    }
+    
+    private var loadingIndicator: some View {
+        ZStack {
+            Color.black.opacity(.zero)
+                .ignoresSafeArea()
+            
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                .scaleEffect(1.5)
+                .containerRelativeFrame(.vertical) { length, _ in
+                    length / 1.2
+                }
         }
     }
 }

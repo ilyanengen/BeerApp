@@ -17,6 +17,8 @@ final class BeerListViewModel {
         }
     }
     
+    var isInitialLoading: Bool = false
+    
     private var beers: [Beer] = []
     
     // Search locally
@@ -42,16 +44,28 @@ final class BeerListViewModel {
     }
     
     @MainActor
-    func fetchMore() async {
-        page += 1
-        await fetchBeerListItems()
+    func initialLoad() async {
+        do {
+            isInitialLoading = true
+            errorMessage = ""
+            let fetchedBeers = try await beerService.getBeers(page: page)
+            isInitialLoading = false
+            if !fetchedBeers.isEmpty {
+                beers = fetchedBeers
+                lastFetchedBeerId = beers.last?.id
+                lastFetchedPage = page
+            }
+        } catch {
+            isInitialLoading = false
+            errorMessage = (error as? APIError)?.errorDescription ?? error.localizedDescription
+        }
     }
     
     @MainActor
-    func fetchBeerListItems() async {
-        errorMessage = ""
-        
+    func fetchMore() async {
         do {
+            page += 1
+            errorMessage = ""
             let fetchedBeers = try await beerService.getBeers(page: page)
             if fetchedBeers.isEmpty {
                 page = lastFetchedPage
