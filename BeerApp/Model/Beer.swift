@@ -91,7 +91,7 @@ extension Beer {
 
 extension Beer {
     static let test = Beer(
-        id: 123,
+        id: 111,
         name: "Zhigulevskoye",
         tagline: "Legendary beer from Samara",
         firstBrewed: "1881",
@@ -136,5 +136,53 @@ extension Beer {
         foodPairing: [],
         brewersTips: "Drink cold",
         contributedBy: "Taimuraz Bolloyev"
+    )
+    
+    static let test2 = Beer(
+        id: 333,
+        name: "Carslberg",
+        tagline: "Probably the best beer in the world.",
+        firstBrewed: "1847",
+        description: "Carlsberg is a renowned Danish lager beer founded by J.C. Jacobsen in 1847. It originated from Jacobsen's quest to brew high-quality lager using pure yeast, which he famously sourced from Bavaria. Over the years, Carlsberg has become a symbol of Danish brewing excellence, known for its commitment to quality and innovation. The brewery also established the Carlsberg Foundation, promoting scientific research and cultural initiatives. Today, Carlsberg continues to be enjoyed worldwide, with a legacy of over 175 years in brewing history.",
+        image: "024.png",
+        abv: 2.0,
+        ibu: 3.0,
+        targetFg: 4.5,
+        targetOg: 5.2,
+        ebc: 1.3,
+        srm: 2.1,
+        ph: 2,
+        attenuationLevel: 3,
+        volume: nil,
+        boilVolume: nil,
+        method: nil,
+        ingredients: nil,
+        foodPairing: [],
+        brewersTips: "Drink cold",
+        contributedBy: "Max Powell"
+    )
+    
+    static let test3 = Beer(
+        id: 444,
+        name: "Beck's",
+        tagline: "Beck's. Life Beckons",
+        firstBrewed: "1873",
+        description: "Beck's is a German pilsner beer brewed by Brauerei Beck & Co., located in Bremen, Germany. Established in 1873, it is known for its crisp, refreshing taste and high-quality ingredients, following the four essential brewing steps: barley, water, hops, and yeast. Beck's has gained international recognition and is enjoyed worldwide, often associated with its unmistakable German craftsmanship. The beer is marketed with a focus on its heritage and quality, appealing to consumers who appreciate a classic pilsner experience.",
+        image: "023.png",
+        abv: 2.0,
+        ibu: 3.0,
+        targetFg: 4.5,
+        targetOg: 5.2,
+        ebc: 1.3,
+        srm: 2.1,
+        ph: 2,
+        attenuationLevel: 3,
+        volume: nil,
+        boilVolume: nil,
+        method: nil,
+        ingredients: nil,
+        foodPairing: [],
+        brewersTips: "Drink cold",
+        contributedBy: "Jordan Henderson"
     )
 }

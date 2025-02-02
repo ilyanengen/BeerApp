@@ -14,7 +14,6 @@ final class BeerAppTests: XCTestCase {
     func testInitialFetchData() async throws {
         let mockBeerService = MockBeerService()
         let sut = BeerListViewModel(beerService: mockBeerService)
-        sut.isSearchInProgress = false
         await sut.fetchInitialData()
         XCTAssertEqual(sut.beerListItems, [Beer.test, Beer.test1])
     }
@@ -24,11 +23,27 @@ final class BeerAppTests: XCTestCase {
         let mockBeerService = MockBeerService()
         mockBeerService.shouldReturnError = true
         let sut = BeerListViewModel(beerService: mockBeerService)
-        sut.isSearchInProgress = false
         await sut.fetchInitialData()
         XCTAssertEqual(sut.beerListItems, [])
         XCTAssertFalse(sut.errorMessage.isEmpty)
     }
     
-    // Add search error test
+    @MainActor
+    func testFetchMore() async throws {
+        let mockBeerService = MockBeerService()
+        let sut = BeerListViewModel(beerService: mockBeerService)
+        await sut.fetchInitialData()
+        await sut.fetchMore()
+        XCTAssertEqual(sut.beerListItems, [Beer.test, Beer.test1, Beer.test2, Beer.test3])
+    }
+    
+    @MainActor
+    func testSearchByName() async throws {
+        let mockBeerService = MockBeerService()
+        let sut = BeerListViewModel(beerService: mockBeerService)
+        await sut.fetchInitialData()
+        sut.isSearchInProgress = true
+        sut.searchText = "Baltika"
+        XCTAssertEqual(sut.beerListItems, [Beer.test1])
+    }
 }

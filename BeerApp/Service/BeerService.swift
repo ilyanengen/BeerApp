@@ -44,6 +44,14 @@ final class MockBeerService: BeerServiceProtocol {
             throw APIError.serverError(statusCode: 502)
         }
         
-        return [Beer.test, Beer.test1]
+        if page == 1 {
+            return [Beer.test, Beer.test1]
+        }
+        
+        if page == 2 {
+            return [Beer.test2, Beer.test3]
+        }
+        
+        return []
     }
 }
